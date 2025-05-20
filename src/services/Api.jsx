@@ -9,10 +9,17 @@ export const getCourses = async () => {
   try {
     const response = await apiClient.get("/course/getCourses");
     console.log('Respuesta de la API:', response.data); 
-    return response.data.courses; 
+    return {
+      success: true,
+      courses: response.data.courses
+    };
   } catch (e) {
     console.error("Error al obtener los cursos:", e);
-    return { error: true, message: e.message };
+    return {
+      success: false,
+      courses: [],
+      message: e.message
+    };
   }
 };
 
