@@ -23,6 +23,7 @@ const CourseDetail = () => {
     });
   };
 
+  // Verificación de carga
   if (loading) return <p className="course-loading">Cargando curso...</p>;
   if (error) return <p className="course-error">{error}</p>;
 
@@ -96,21 +97,20 @@ const CourseDetail = () => {
             className="doc-comments-container"
             style={{ display: "flex", gap: "20px", marginTop: "20px" }}
           >
-            <iframe
-              src={
-                selectedDoc.documentFilename
-                  ? `http://localhost:3000/public/uploads/course-documents/${selectedDoc.documentFilename}`
-                  : undefined
-              }
-              title={selectedDoc.title}
-              className="doc-iframe"
-              style={{
-                flex: 1,
-                height: "600px",
-                borderRadius: "8px",
-                border: "1px solid #ccc",
-              }}
-            />
+            <div style={{ flex: 1 }}>
+              {/* Verifica si el documento tiene una URL válida para el iframe */}
+              {selectedDoc && selectedDoc.documentFilename ? (
+  <iframe
+    src={`http://localhost:3000${selectedDoc.documentFilename}`} // Usa el nombre del archivo
+    title={selectedDoc.title}
+    className="doc-iframe"
+    style={{ flex: 1, height: "600px", borderRadius: "8px", border: "1px solid #ccc" }}
+  />
+) : (
+  <p>No hay documento disponible para mostrar.</p>
+)}
+
+            </div>
 
             <div
               className="comments-section"

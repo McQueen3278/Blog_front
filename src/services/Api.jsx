@@ -8,7 +8,6 @@ const apiClient = axios.create({
 export const getCourses = async () => {
   try {
     const response = await apiClient.get("/course/getCourses");
-    console.log('Respuesta de la API:', response.data); 
     return {
       success: true,
       courses: response.data.courses
