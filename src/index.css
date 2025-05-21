@@ -1,94 +1,262 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  color: #333;
+}
+
+.course-list-container {
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .course-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 2rem;
+  justify-content: center;
 }
 
 .course-card {
-  border: 1px solid #ffffff;
-  padding: 20px;
-  border-radius: 8px;
-  width: 250px;
-  background-color: #000000;
+  width: 200px;
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  padding: 1rem;
+}
+
+.course-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.course-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .course-card h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
 .course-card p {
-  font-size: 1rem;
-  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-.course-detail-link {
-  display: inline-block;
-  padding: 10px 15px;
-  background-color: #21118C;
+.course-card a {
+  display: block;
+  margin-top: 0.8rem;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
   color: white;
-  border-radius: 5px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
-.course-detail-link:hover {
-  background-color: #6A4FF2;
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.6s ease forwards;
+.course-card a:hover {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
 }
 
 
+.course-detail-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
+
+.course-detail-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  max-width: 500px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.course-detail-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.course-detail-card h1 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.course-detail-card .professor {
+  font-weight: 600;
+  color: #4f46e5;
+  margin-bottom: 1rem;
+}
+
+.course-detail-card p {
+  color: #444;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.course-detail-card .documents {
+  text-align: left;
+}
+
+.document-item {
+  background-color: #eef2ff;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.document-item:hover {
+  transform: translateY(-4px);
+}
+
+.document-title {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #3730a3;
+}
+
+.document-description {
+  font-size: 0.85rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+.document-link {
+  background-color: #7c3aed;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.document-link:hover {
+  background-color: #6d28d9;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #4f46e5, #db2777);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.course-document-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.course-document-item {
+  display: flex;
+  align-items: center;
+  background: #f9f9fb;
+  border-radius: 12px;
+  padding: 12px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.course-document-item:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.doc-preview {
+  flex-shrink: 0;
+  margin-right: 18px;
+}
+
+.doc-image {
+  width: 80px;     
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.doc-info {
+  flex-grow: 1;
+}
+
+.document-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.document-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #6b46c1, #b83280);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  box-shadow: 0 3px 8px rgba(107, 70, 193, 0.5);
+}
+
+.document-button:hover {
+  background: linear-gradient(135deg, #b83280, #6b46c1);
+  box-shadow: 0 5px 12px rgba(184, 50, 128, 0.7);
+}
+
+.Bienvenida {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #6b46c1;
+  text-shadow: 2px 2px 5px rgba(107, 70, 193, 0.4);
+  margin: 3rem 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+}
+
+

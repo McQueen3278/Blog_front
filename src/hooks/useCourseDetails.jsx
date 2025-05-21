@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getCourseById } from "../services/Api";
 
 
-export const useCourseDetails = () => {
+ const useCourseDetails = () => {
   const { id } = useParams();
   const [course, setCourse] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -27,3 +27,5 @@ export const useCourseDetails = () => {
 
   return { course, loading, error };
 };
+
+export default useCourseDetails;
