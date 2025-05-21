@@ -12,7 +12,7 @@ const usePostComments = (postId, courseId) => {
     setLoading(true);
     getPostWithComments(postId)
       .then(data => {
-        if (!data.success) throw new Error(data.message || "Error");
+        if (!data.success) throw new Error(data.message || "Error al obtener los comentarios.");
         setPost(data.post);
         setComments(data.post.comments || []);
         setError(null);
@@ -27,10 +27,12 @@ const usePostComments = (postId, courseId) => {
 
   const addComment = async (comment) => {
     if (!courseId || !postId) return;
+
     setLoading(true);
     try {
-      const result = await apiAddComment(courseId, { ...comment, postId });
+      const result = await apiAddComment(comment, postId);
       if (!result.success) throw new Error(result.message || "Error agregando comentario");
+      
       await loadPostComments();
     } catch (err) {
       setError(err.message);

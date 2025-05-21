@@ -39,10 +39,10 @@ export const getCourseById = async (id) => {
   }
 };
 
-export const addComment = async (comment) => {
+export const addComment = async (comment, postId) => {
   try {
     const response = await apiClient.post(
-      `/comment/addComment`,
+      `/comment/addComment/${postId}`,
       comment
     );
     return response.data;

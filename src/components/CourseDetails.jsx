@@ -13,9 +13,14 @@ const CourseDetail = () => {
     addComment,
   } = usePostComments(selectedDoc?._id, course?._id);
 
-  const handleAddComment = async (commentData) => {
+  const handleAddComment = async ({ username, content }) => {
     if (!selectedDoc?._id) return;
-    await addComment(selectedDoc._id, commentData);
+
+    await addComment({
+      username,
+      content,
+      postId: selectedDoc._id,
+    });
   };
 
   if (loading) return <p className="course-loading">Cargando curso...</p>;
@@ -28,14 +33,21 @@ const CourseDetail = () => {
           src={`http://localhost:3000/uploads/course-images/${course.courseImage}`}
           alt={course.name}
           className="course-detail-image"
-          style={{ maxWidth: "300px", borderRadius: "8px", marginBottom: "20px" }}
+          style={{
+            maxWidth: "300px",
+            borderRadius: "8px",
+            marginBottom: "20px",
+          }}
         />
         <h1 className="course-detail-title">{course.name}</h1>
         <p className="course-detail-professor">Profesor: {course.professor}</p>
 
         <h2 className="course-detail-documents-title">Documentos</h2>
         {course.documents && course.documents.length > 0 ? (
-          <ul className="course-document-list" style={{ listStyle: "none", padding: 0 }}>
+          <ul
+            className="course-document-list"
+            style={{ listStyle: "none", padding: 0 }}
+          >
             {course.documents.map((doc) => (
               <li
                 key={doc._id}
@@ -45,10 +57,14 @@ const CourseDetail = () => {
                   alignItems: "center",
                   marginBottom: "10px",
                   cursor: "pointer",
-                  border: selectedDoc?._id === doc._id ? "2px solid #005f99" : "1px solid #ddd",
+                  border:
+                    selectedDoc?._id === doc._id
+                      ? "2px solid #005f99"
+                      : "1px solid #ddd",
                   borderRadius: "6px",
                   padding: "6px",
-                  backgroundColor: selectedDoc?._id === doc._id ? "#e0f0ff" : "white",
+                  backgroundColor:
+                    selectedDoc?._id === doc._id ? "#e0f0ff" : "white",
                 }}
                 onClick={() => setSelectedDoc(doc)}
               >
@@ -60,7 +76,12 @@ const CourseDetail = () => {
                   }
                   alt={doc.title || "Documento"}
                   className="doc-image"
-                  style={{ width: "40px", height: "40px", marginRight: "12px", objectFit: "contain" }}
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    marginRight: "12px",
+                    objectFit: "contain",
+                  }}
                 />
                 <span className="document-title">{doc.title || "Sin título"}</span>
               </li>
@@ -83,7 +104,12 @@ const CourseDetail = () => {
               }
               title={selectedDoc.title}
               className="doc-iframe"
-              style={{ flex: 1, height: "600px", borderRadius: "8px", border: "1px solid #ccc" }}
+              style={{
+                flex: 1,
+                height: "600px",
+                borderRadius: "8px",
+                border: "1px solid #ccc",
+              }}
             />
 
             <div
@@ -119,12 +145,7 @@ const CourseDetail = () => {
                 ))}
               </ul>
 
-              <CommentForm
-  onAddComment={({ username, content }) =>
-    addComment({ username, content, postId: selectedDoc._id })
-  }
-/>
-
+              <CommentForm onAddComment={handleAddComment} />
             </div>
           </div>
         )}
