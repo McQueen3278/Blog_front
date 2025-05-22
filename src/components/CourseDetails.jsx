@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useCourseDetails from "../hooks/useCourseDetails";
 import usePostComments from "../hooks/useComments";
+import homeIcon from "../assets/home.png";
 
 const CourseDetail = () => {
   const { course, loading, error } = useCourseDetails();
@@ -23,13 +24,20 @@ const CourseDetail = () => {
     });
   };
 
-  // Verificación de carga
+  const handleCloseDocument = () => {
+    setSelectedDoc(null);
+  };
+
   if (loading) return <p className="course-loading">Cargando curso...</p>;
   if (error) return <p className="course-error">{error}</p>;
 
   return (
+    
     <div className="course-detail-container">
       <div className="course-detail-card">
+        <a href="/" className="home-link">
+          <img src={homeIcon} alt="Principal" className="home-icon" />
+        </a>
         <img
           src={`http://localhost:3000/uploads/course-images/${course.courseImage}`}
           alt={course.name}
@@ -98,18 +106,26 @@ const CourseDetail = () => {
             style={{ display: "flex", gap: "20px", marginTop: "20px" }}
           >
             <div style={{ flex: 1 }}>
-              {/* Verifica si el documento tiene una URL válida para el iframe */}
-              {selectedDoc && selectedDoc.documentFilename ? (
-  <iframe
-    src={`http://localhost:3000${selectedDoc.documentFilename}`} // Usa el nombre del archivo
-    title={selectedDoc.title}
-    className="doc-iframe"
-    style={{ flex: 1, height: "600px", borderRadius: "8px", border: "1px solid #ccc" }}
-  />
-) : (
-  <p>No hay documento disponible para mostrar.</p>
-)}
+              {selectedDoc && selectedDoc.document ? (
+                <>
+                  <button
+                    onClick={handleCloseDocument}
+                    className="close-document-btn"
+                  >
+                    Salir del documento
+                  </button>
 
+                  <iframe
+                    src={`http://localhost:3000/uploads/course-documents/${selectedDoc.document}`}
+                    width="100%"
+                    height="600px"
+                    style={{ border: "1px solid #ccc" }}
+                    title="Documento PDF"
+                  />
+                </>
+              ) : (
+                <p>No hay documento disponible para mostrar.</p>
+              )}
             </div>
 
             <div

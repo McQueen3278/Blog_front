@@ -17,7 +17,7 @@ const useCourses = () => {
           setError(result.message || "Error desconocido");
           setCourses([]);
         } else if (!result.courses || result.courses.length === 0) {
-          setError(null); // no error, solo no hay cursos
+          setError(null);
           setCourses([]);
         } else {
           setError(null);

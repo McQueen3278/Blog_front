@@ -4,6 +4,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #f0f4ff, #ffffff);
   color: #333;
+  animation: fadeIn 1s ease forwards;
 }
 
 .course-list-container {
@@ -12,6 +13,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  animation: fadeInSlideUp 0.8s ease forwards;
 }
 
 .course-list {
@@ -30,7 +32,15 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
   padding: 1rem;
+  opacity: 0;
+  animation: fadeInSlideUp 0.7s ease forwards;
+  animation-delay: 0.2s;
 }
+
+.course-list .course-card:nth-child(1) { animation-delay: 0.2s; }
+.course-list .course-card:nth-child(2) { animation-delay: 0.35s; }
+.course-list .course-card:nth-child(3) { animation-delay: 0.5s; }
+.course-list .course-card:nth-child(4) { animation-delay: 0.65s; }
 
 .course-card:hover {
   transform: scale(1.05);
@@ -72,24 +82,26 @@ body {
   background: linear-gradient(90deg, #4f46e5, #7c3aed);
 }
 
-
 .course-detail-container {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
-
+  animation: fadeInSlideUp 0.8s ease forwards;
 }
 
 .course-detail-card {
   background-color: #fff;
   padding: 2rem;
   border-radius: 1.5rem;
-  max-width: 500px;
+  max-width: 900px;
   width: 100%;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  animation: fadeInSlideUp 0.7s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .course-detail-card img {
@@ -98,6 +110,12 @@ body {
   object-fit: cover;
   border-radius: 1rem;
   margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+  animation: fadeIn 1s ease forwards;
+}
+
+.course-detail-card img:hover {
+  transform: scale(1.05);
 }
 
 .course-detail-card h1 {
@@ -131,6 +149,8 @@ body {
   border-radius: 1rem;
   margin-bottom: 1rem;
   transition: transform 0.2s ease;
+  opacity: 0;
+  animation: fadeInSlideUp 0.5s ease forwards;
 }
 
 .document-item:hover {
@@ -165,28 +185,6 @@ body {
   background-color: #6d28d9;
 }
 
-.btn-gradient {
-  background: linear-gradient(135deg, #6366f1, #ec4899);
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border: none;
-  border-radius: 9999px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  display: inline-block;
-  cursor: pointer;
-}
-
-.btn-gradient:hover {
-  background: linear-gradient(135deg, #4f46e5, #db2777);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-}
-
 .course-document-list {
   list-style: none;
   padding: 0;
@@ -202,7 +200,13 @@ body {
   margin-bottom: 16px;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
   transition: box-shadow 0.3s ease;
+  opacity: 0;
+  animation: fadeInSlideUp 0.6s ease forwards;
 }
+
+.course-document-list .course-document-item:nth-child(1) { animation-delay: 0.2s; }
+.course-document-list .course-document-item:nth-child(2) { animation-delay: 0.35s; }
+.course-document-list .course-document-item:nth-child(3) { animation-delay: 0.5s; }
 
 .course-document-item:hover {
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -259,4 +263,97 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
 }
 
+.large-iframe {
+  width: 100%;
+  height: 800px;
+  border: 2px solid #666;
+  border-radius: 8px;
+}
 
+.close-document-btn {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: rgb(255, 255, 255);
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.close-document-btn:hover {
+  background: linear-gradient(135deg, #4f46e5, #db2777);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.doc-comments-container {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  width: 100%;
+  opacity: 0;
+  animation: fadeInSlideUp 0.6s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 9999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  cursor: pointer;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, #4f46e5, #db2777);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.home-link {
+  position: fixed; 
+  top: 10px; 
+  left: 10px;
+  z-index: 1000;  
+  display: inline-block;
+}
+
+.home-link img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.home-link img:hover {
+  transform: scale(1.1);
+}
+
+
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
